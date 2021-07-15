@@ -1,3 +1,7 @@
+// Mongoose connection
+const mongoose = require("mongoose");
+require("dotenv").config();
+
 // Load express module
 const express = require("express");
 const issData = require("./routes/issData");
@@ -9,13 +13,15 @@ const app = express();
 app.use(express.json());
 app.use(cors("*"));
 
-// Mongoose connection
-const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/iss", {
+const url = process.env.MONGODB_URI;
+console.log("url:", url)
+	mongoose.connect(url, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
+
+
 const db = mongoose.connection;
 
 // Check for DB connection
