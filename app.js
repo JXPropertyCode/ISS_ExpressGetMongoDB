@@ -13,14 +13,12 @@ const app = express();
 app.use(express.json());
 app.use(cors("*"));
 
-
-const url = process.env.MONGODB_URI;
-console.log("url:", url)
-	mongoose.connect(url, {
+const url = process.env.MONGODB_ATLAS_URL;
+console.log("url:", url);
+mongoose.connect(url, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
-
 
 const db = mongoose.connection;
 
