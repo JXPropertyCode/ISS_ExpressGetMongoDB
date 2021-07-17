@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 let flyingObjectSchema = mongoose.Schema({
-	timestamp: String,
+	timestamp: Number,
 	lat: Number,
 	lng: Number,
 	created: {
