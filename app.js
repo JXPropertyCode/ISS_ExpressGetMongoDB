@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors("*"));
 
-const url = process.env.MONGODB_ATLAS_URL;
+const url = process.env.MONGODB_URL;
 console.log("url:", url);
 mongoose.connect(url, {
 	useNewUrlParser: true,
