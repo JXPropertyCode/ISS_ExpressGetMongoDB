@@ -55,6 +55,7 @@ setInterval(() => {
 
 		console.log("convertResData:", convertResData);
 
+		// inserts data into DB
 		FlyingObject.create(convertResData, function (err) {
 			if (err) throw err;
 			// console.log("Inserted a New Data")
