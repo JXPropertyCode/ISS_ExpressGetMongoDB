@@ -36,9 +36,11 @@ const time = 3000;
 
 const convertTime = (givenTimeStamp) => {
 	if (givenTimeStamp !== null) {
+		// return new Date(givenTimeStamp).toUTCString()
 		return moment
 			.unix(givenTimeStamp)
-			.toLocaleString("en-US", { timeZone: "America/New_York" });
+			.utcOffset(-7)
+			.format("MM/DD/YY hh:mm:ss a");
 	}
 };
 
@@ -46,7 +48,7 @@ setInterval(() => {
 	axios.get("http://api.open-notify.org/iss-now.json").then((response) => {
 		// console.log(response.data);
 		let convertResData = {
-			timestamp: String(convertTime(response.data.timestamp)),
+			timestamp: String(convertTime(response.data.timestamp) + " PST"),
 			lat: Number(response.data.iss_position.latitude),
 			lng: Number(response.data.iss_position.longitude),
 		};
