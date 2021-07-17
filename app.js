@@ -11,7 +11,6 @@ const { default: axios } = require("axios");
 const moment = require("moment");
 const FlyingObject = require("./models/FlyingObject");
 
-
 // Initialize app
 const app = express();
 app.use(express.json());
@@ -33,16 +32,13 @@ db.on("error", function () {
 	console.log(err);
 });
 
-
-
-
-
-
 const time = 3000;
 
 const convertTime = (givenTimeStamp) => {
 	if (givenTimeStamp !== null) {
-		return moment.unix(givenTimeStamp).utcOffset(-7).format("MM/DD/YY hh:mm:ss a");
+		return moment
+			.unix(givenTimeStamp)
+			.toLocaleString("en-US", { timeZone: "America/New_York" });
 	}
 };
 
@@ -55,7 +51,7 @@ setInterval(() => {
 			lng: Number(response.data.iss_position.longitude),
 		};
 
-		console.log("convertResData:", convertResData)
+		console.log("convertResData:", convertResData);
 
 		FlyingObject.create(convertResData, function (err) {
 			if (err) throw err;
@@ -64,11 +60,6 @@ setInterval(() => {
 		});
 	});
 }, time);
-
-
-
-
-
 
 // Route for home
 // Health Check for the server
