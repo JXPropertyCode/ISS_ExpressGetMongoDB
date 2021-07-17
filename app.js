@@ -8,7 +8,6 @@ const issData = require("./routes/issData");
 const p = process.env.PORT || 8000;
 const cors = require("cors");
 const { default: axios } = require("axios");
-// const moment = require("moment");
 const FlyingObject = require("./models/FlyingObject");
 
 // Initialize app
@@ -34,16 +33,6 @@ db.on("error", function () {
 
 const time = 3000;
 
-// const convertTime = (givenTimeStamp) => {
-// 	if (givenTimeStamp !== null) {
-// 		// return new Date(givenTimeStamp).toUTCString()
-// 		return moment
-// 			.unix(givenTimeStamp)
-// 			.utcOffset(-7)
-// 			.format("MM/DD/YY hh:mm:ss a");
-// 	}
-// };
-
 setInterval(() => {
 	axios.get("http://api.open-notify.org/iss-now.json").then((response) => {
 		// console.log(response.data);
@@ -53,7 +42,7 @@ setInterval(() => {
 			lng: Number(response.data.iss_position.longitude),
 		};
 
-		console.log("convertResData:", convertResData);
+		// console.log("convertResData:", convertResData);
 
 		// inserts data into DB
 		FlyingObject.create(convertResData, function (err) {
