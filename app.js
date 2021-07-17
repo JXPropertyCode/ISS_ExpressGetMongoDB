@@ -18,7 +18,6 @@ app.use(express.json());
 app.use(cors("*"));
 
 const url = process.env.MONGODB_URL;
-console.log("url:", url);
 mongoose.connect(url, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -49,12 +48,14 @@ const convertTime = (givenTimeStamp) => {
 
 setInterval(() => {
 	axios.get("http://api.open-notify.org/iss-now.json").then((response) => {
-		console.log(response.data);
+		// console.log(response.data);
 		let convertResData = {
 			timestamp: convertTime(response.data.timestamp),
 			lat: Number(response.data.iss_position.latitude),
 			lng: Number(response.data.iss_position.longitude),
 		};
+
+		console.log("convertResData:", convertResData)
 
 		FlyingObject.create(convertResData, function (err) {
 			if (err) throw err;
