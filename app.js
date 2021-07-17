@@ -73,7 +73,7 @@ setInterval(() => {
 // Route for home
 // Health Check for the server
 app.get("/", function (req, res) {
-	res.send("hello express");
+	res.send("hello express1");
 });
 
 app.use("/issData", issData);
