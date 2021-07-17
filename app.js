@@ -50,7 +50,7 @@ setInterval(() => {
 	axios.get("http://api.open-notify.org/iss-now.json").then((response) => {
 		// console.log(response.data);
 		let convertResData = {
-			timestamp: convertTime(response.data.timestamp),
+			timestamp: String(convertTime(response.data.timestamp)),
 			lat: Number(response.data.iss_position.latitude),
 			lng: Number(response.data.iss_position.longitude),
 		};
