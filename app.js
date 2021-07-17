@@ -42,7 +42,7 @@ const time = 3000;
 
 const convertTime = (givenTimeStamp) => {
 	if (givenTimeStamp !== null) {
-		return moment.unix(givenTimeStamp).utcOffset(-6).format("MM/DD/YY hh:mm:ss a");
+		return moment.unix(givenTimeStamp).utcOffset(-7).format("MM/DD/YY hh:mm:ss a");
 	}
 };
 
@@ -73,7 +73,7 @@ setInterval(() => {
 // Route for home
 // Health Check for the server
 app.get("/", function (req, res) {
-	res.send("hello express1");
+	res.send("hello express");
 });
 
 app.use("/issData", issData);
