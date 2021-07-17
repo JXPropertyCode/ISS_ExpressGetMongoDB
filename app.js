@@ -42,7 +42,7 @@ const time = 3000;
 
 const convertTime = (givenTimeStamp) => {
 	if (givenTimeStamp !== null) {
-		return moment.unix(givenTimeStamp).format("MM/DD/YY hh:mm:ss a");
+		return moment.unix(givenTimeStamp).utcOffset(-6).format("MM/DD/YY hh:mm:ss a");
 	}
 };
 
